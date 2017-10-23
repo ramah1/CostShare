@@ -1,0 +1,59 @@
+DESCRIPTION_MAX_LENGTH = 1000
+
+entity CSGroup {
+	name String required,
+    description String maxlength(DESCRIPTION_MAX_LENGTH)
+}
+
+entity Cost {
+	name String required,
+    description String maxlength(DESCRIPTION_MAX_LENGTH),
+    sum Double required
+}
+
+entity Invite {
+	comment String maxlength(DESCRIPTION_MAX_LENGTH) required
+}
+
+entity UserCost {
+	multiplier Double required
+}
+
+entity CSUser{
+    name String
+}
+
+
+relationship ManyToOne{
+	Invite{group(name)} to CSGroup
+}
+
+relationship ManyToMany{
+	CSGroup{members(name)} to CSUser{groups(name)},
+    CSGroup{admins(name)} to CSUser{adminOf(name)}
+}
+
+relationship OneToMany{
+	Cost{userCosts} to UserCost{baseCost(name)},
+    CSUser{userCosts} to UserCost{user(name)},
+    CSUser{receivedInvites} to Invite{sentTo(name)},
+    CSUser{sentInvites} to Invite{sentFrom(name)},
+    CSGroup{costs(name)} to Cost{group(name)}
+}
+
+relationship OneToOne{
+    CSUser{login} to User
+}
+
+
+// Set pagination options
+paginate CSGroup, Cost, UserCost with infinite-scroll
+
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+angularSuffix * with cs
