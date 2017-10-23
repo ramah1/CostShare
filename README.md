@@ -3,26 +3,39 @@ This application was generated using JHipster 4.9.0, you can find documentation 
 
 ## Requirements
 
-Damit entwickelt werden kann sind folgende Programme und Vorausetzungen nötig
-###Software
+Damit entwickelt werden kann sind folgende Programme und Vorausetzungen nötig.
+### Software
  - node.js (JavaScript Laufzeitumgebung)
  - Yarn (Alternativer Packetmanager zu npm)
  - Git (für Collaboration)
  - Maven (Wenn über IntelliJ gestartet werden soll)
- 
- 
+ - PostgreSQL (https://www.openscg.com/bigsql/postgresql/installers.jsp/ VERSION 9.6)
  
   - Yeoman-Gemerator (`yarn global add yo`)
   - JHipster-Generator (`yarn global add generator-jhipster`)
   
 
-###Systemvariablen (PATH)  
+### Systemvariablen (PATH)  
 
 Damit die Applikaion läuft sind folgende Umgebungsvariablen nötig
 
 - yarn
 - maven (mvn)
-- git 
+- git
+- postgres (psql & createdb)
+
+### Datenbank
+Um die Applikation starten zu können wird eine lokale ProsgreSQL Datenbank benötig
+
+In der Kommandozeile:
+- Datenbank erstellen: `createdb -U postgres datenbankname`
+- Rolle(Benutzer) hinzufügen: ` psql -U postgres "CREATE ROLE benutzer/rollenName With LOGIN PASSWORD 'password';"`
+
+### Java Variablen
+In IntelliJ unter Run/Debug Configuration müssen folgende Umgebungsvariablen hinterlegt sein:
+- `JDBC_URL`    URL zur Datenbank (z. B.: `jdbc:postgresql://localhost:5432/costshare`)
+- `JDBC_PWD`    Passwort für die Datenbank
+- `JDBC_USER`   Benutzername für die Datenbank 
  
 
 ## Development
