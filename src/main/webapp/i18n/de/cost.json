@@ -1,0 +1,25 @@
+{
+    "costshareApp": {
+        "cost" : {
+            "home": {
+                "title": "Costs",
+                "createLabel": "Cost erstellen",
+                "createOrEditLabel": "Cost erstellen oder bearbeiten"
+            },
+            "created": "Cost erstellt mit ID {{ param }}",
+            "updated": "Cost aktualisiert mit ID {{ param }}",
+            "deleted": "Cost gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Cost {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Cost"
+            },
+            "name": "Name",
+            "description": "Description",
+            "sum": "Sum",
+            "userCosts": "User Costs",
+            "group": "Group"
+        }
+    }
+}

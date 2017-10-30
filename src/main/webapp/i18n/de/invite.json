@@ -1,0 +1,24 @@
+{
+    "costshareApp": {
+        "invite" : {
+            "home": {
+                "title": "Invites",
+                "createLabel": "Invite erstellen",
+                "createOrEditLabel": "Invite erstellen oder bearbeiten"
+            },
+            "created": "Invite erstellt mit ID {{ param }}",
+            "updated": "Invite aktualisiert mit ID {{ param }}",
+            "deleted": "Invite gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll Invite {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "Invite"
+            },
+            "comment": "Comment",
+            "group": "Group",
+            "sentTo": "Sent To",
+            "sentFrom": "Sent From"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CSGroup.
+    -->
+    <changeSet id="20171023134707-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="csgroups_id"
+                                 baseTableName="csgroup_members"
+                                 constraintName="fk_csgroup_members_csgroups_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cs_group"/>
+        <addForeignKeyConstraint baseColumnNames="members_id"
+                                 baseTableName="csgroup_members"
+                                 constraintName="fk_csgroup_members_members_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cs_user"/>
+        
+        <addForeignKeyConstraint baseColumnNames="csgroups_id"
+                                 baseTableName="csgroup_admins"
+                                 constraintName="fk_csgroup_admins_csgroups_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cs_group"/>
+        <addForeignKeyConstraint baseColumnNames="admins_id"
+                                 baseTableName="csgroup_admins"
+                                 constraintName="fk_csgroup_admins_admins_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cs_user"/>
+        
+    </changeSet>
+</databaseChangeLog>

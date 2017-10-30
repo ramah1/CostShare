@@ -1,0 +1,58 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "userName",
+            "otherEntityName": "user",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "cSUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "userCosts",
+            "otherEntityName": "userCost",
+            "otherEntityRelationshipName": "user"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "receivedInvites",
+            "otherEntityName": "invite",
+            "otherEntityRelationshipName": "sentTo"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "sentInvites",
+            "otherEntityName": "invite",
+            "otherEntityRelationshipName": "sentFrom"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "groups",
+            "otherEntityName": "cSGroup",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "members"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "adminOf",
+            "otherEntityName": "cSGroup",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "admins"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171023134711",
+    "entityTableName": "cs_user",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "cs"
+}

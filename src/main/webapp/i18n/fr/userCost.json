@@ -1,0 +1,23 @@
+{
+    "costshareApp": {
+        "userCost" : {
+            "home": {
+                "title": "UserCosts",
+                "createLabel": "Créer un nouveau User Cost",
+                "createOrEditLabel": "Créer ou éditer un User Cost"
+            },
+            "created": "Un nouveau User Cost a été créé avec l'identifiant {{ param }}",
+            "updated": "Le User Cost avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le User Cost avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le User Cost {{ id }} ?"
+            },
+            "detail": {
+                "title": "User Cost"
+            },
+            "multiplier": "Multiplier",
+            "baseCost": "Base Cost",
+            "user": "User"
+        }
+    }
+}

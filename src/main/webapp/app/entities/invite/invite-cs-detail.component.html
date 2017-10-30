@@ -1,0 +1,43 @@
+
+<div *ngIf="invite">
+    <h2><span jhiTranslate="costshareApp.invite.detail.title">Invite</span> {{invite.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="costshareApp.invite.comment">Comment</span></dt>
+        <dd>
+            <span>{{invite.comment}}</span>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.invite.group">Group</span></dt>
+        <dd>
+            <div *ngIf="invite.groupId">
+                <a [routerLink]="['/cs-group-cs', invite.groupId]">{{invite.groupName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.invite.sentTo">Sent To</span></dt>
+        <dd>
+            <div *ngIf="invite.sentToId">
+                <a [routerLink]="['/cs-user-cs', invite.sentToId]">{{invite.sentToName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.invite.sentFrom">Sent From</span></dt>
+        <dd>
+            <div *ngIf="invite.sentFromId">
+                <a [routerLink]="['/cs-user-cs', invite.sentFromId]">{{invite.sentFromName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'invite-cs/'+ invite.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

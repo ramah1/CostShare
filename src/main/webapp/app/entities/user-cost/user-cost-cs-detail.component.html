@@ -1,0 +1,37 @@
+
+<div *ngIf="userCost">
+    <h2><span jhiTranslate="costshareApp.userCost.detail.title">User Cost</span> {{userCost.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="costshareApp.userCost.multiplier">Multiplier</span></dt>
+        <dd>
+            <span>{{userCost.multiplier}}</span>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.userCost.baseCost">Base Cost</span></dt>
+        <dd>
+            <div *ngIf="userCost.baseCostId">
+                <a [routerLink]="['/cost-cs', userCost.baseCostId]">{{userCost.baseCostName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.userCost.user">User</span></dt>
+        <dd>
+            <div *ngIf="userCost.userId">
+                <a [routerLink]="['/cs-user-cs', userCost.userId]">{{userCost.userName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-cost-cs/'+ userCost.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

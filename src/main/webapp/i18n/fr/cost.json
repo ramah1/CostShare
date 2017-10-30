@@ -1,0 +1,25 @@
+{
+    "costshareApp": {
+        "cost" : {
+            "home": {
+                "title": "Costs",
+                "createLabel": "Créer un nouveau Cost",
+                "createOrEditLabel": "Créer ou éditer un Cost"
+            },
+            "created": "Un nouveau Cost a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Cost avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Cost avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Cost {{ id }} ?"
+            },
+            "detail": {
+                "title": "Cost"
+            },
+            "name": "Name",
+            "description": "Description",
+            "sum": "Sum",
+            "userCosts": "User Costs",
+            "group": "Group"
+        }
+    }
+}

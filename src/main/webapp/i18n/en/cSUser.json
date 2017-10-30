@@ -1,0 +1,27 @@
+{
+    "costshareApp": {
+        "cSUser" : {
+            "home": {
+                "title": "CS Users",
+                "createLabel": "Create a new CS User",
+                "createOrEditLabel": "Create or edit a CS User"
+            },
+            "created": "A new CS User is created with identifier {{ param }}",
+            "updated": "A CS User is updated with identifier {{ param }}",
+            "deleted": "A CS User is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete CS User {{ id }}?"
+            },
+            "detail": {
+                "title": "CS User"
+            },
+            "name": "Name",
+            "userName": "User Name",
+            "userCosts": "User Costs",
+            "receivedInvites": "Received Invites",
+            "sentInvites": "Sent Invites",
+            "groups": "Groups",
+            "adminOf": "Admin Of"
+        }
+    }
+}

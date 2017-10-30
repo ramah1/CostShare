@@ -1,0 +1,41 @@
+
+<div *ngIf="cSGroup">
+    <h2><span jhiTranslate="costshareApp.cSGroup.detail.title">CS Group</span> {{cSGroup.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="costshareApp.cSGroup.name">Name</span></dt>
+        <dd>
+            <span>{{cSGroup.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.cSGroup.description">Description</span></dt>
+        <dd>
+            <span>{{cSGroup.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.cSGroup.members">Members</span></dt>
+        <dd>
+            <span *ngFor="let members of cSGroup.members; let last = last">
+                <a [routerLink]="['/cs-user-cs', members?.id ]">{{members.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="costshareApp.cSGroup.admins">Admins</span></dt>
+        <dd>
+            <span *ngFor="let admins of cSGroup.admins; let last = last">
+                <a [routerLink]="['/cs-user-cs', admins?.id ]">{{admins.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cs-group-cs/'+ cSGroup.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

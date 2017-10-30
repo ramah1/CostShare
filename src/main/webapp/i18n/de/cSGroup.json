@@ -1,0 +1,25 @@
+{
+    "costshareApp": {
+        "cSGroup" : {
+            "home": {
+                "title": "CS Groups",
+                "createLabel": "CS Group erstellen",
+                "createOrEditLabel": "CS Group erstellen oder bearbeiten"
+            },
+            "created": "CS Group erstellt mit ID {{ param }}",
+            "updated": "CS Group aktualisiert mit ID {{ param }}",
+            "deleted": "CS Group gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll CS Group {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "CS Group"
+            },
+            "name": "Name",
+            "description": "Description",
+            "costs": "Costs",
+            "members": "Members",
+            "admins": "Admins"
+        }
+    }
+}

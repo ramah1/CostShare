@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span jhiTranslate="costshareApp.userCost.home.title">User Costs</span>
+        <button class="btn btn-primary float-right jh-create-entity create-user-cost-cs" [routerLink]="['/', { outlets: { popup: ['user-cost-cs-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="costshareApp.userCost.home.createLabel">
+            Create new User Cost
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="userCosts">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="multiplier"><span jhiTranslate="costshareApp.userCost.multiplier">Multiplier</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="baseCostName"><span jhiTranslate="costshareApp.userCost.baseCost">Base Cost</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="userName"><span jhiTranslate="costshareApp.userCost.user">User</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let userCost of userCosts ;trackBy: trackId">
+                <td><a [routerLink]="['../user-cost-cs', userCost.id ]">{{userCost.id}}</a></td>
+                <td>{{userCost.multiplier}}</td>
+                <td>
+                    <div *ngIf="userCost.baseCostId">
+                        <a [routerLink]="['../cost-cs', userCost.baseCostId  ]" >{{userCost.baseCostName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="userCost.userId">
+                        <a [routerLink]="['../cs-user-cs', userCost.userId  ]" >{{userCost.userName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../user-cost-cs', userCost.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-cost-cs/'+ userCost.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-cost-cs/'+ userCost.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

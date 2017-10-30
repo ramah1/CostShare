@@ -1,0 +1,23 @@
+{
+    "costshareApp": {
+        "userCost" : {
+            "home": {
+                "title": "User Costs",
+                "createLabel": "User Cost erstellen",
+                "createOrEditLabel": "User Cost erstellen oder bearbeiten"
+            },
+            "created": "User Cost erstellt mit ID {{ param }}",
+            "updated": "User Cost aktualisiert mit ID {{ param }}",
+            "deleted": "User Cost gelöscht mit ID {{ param }}",
+            "delete": {
+                "question": "Soll User Cost {{ id }} wirklich dauerhaft gelöscht werden?"
+            },
+            "detail": {
+                "title": "User Cost"
+            },
+            "multiplier": "Multiplier",
+            "baseCost": "Base Cost",
+            "user": "User"
+        }
+    }
+}
