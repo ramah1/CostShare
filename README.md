@@ -1,3 +1,28 @@
+
+## Requirements
+
+Damit entwickelt werden kann sind folgende Programme und Vorausetzungen nötig
+###Software
+ - node.js (JavaScript Laufzeitumgebung)
+ - Yarn (Alternativer Packetmanager zu npm)
+ - Git (für Collaboration)
+ - Maven (Wenn über IntelliJ gestartet werden soll)
+ 
+ 
+ 
+  - Yeoman-Gemerator (`yarn global add yo`)
+  - JHipster-Generator (`yarn global add generator-jhipster`)
+  
+
+###Systemvariablen (PATH)  
+
+Damit die Applikaion läuft sind folgende Umgebungsvariablen nötig
+
+- yarn
+- maven (mvn)
+- git 
+
+
 # CostShare
 This application was generated using JHipster 4.9.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.9.0](http://www.jhipster.tech/documentation-archive/v4.9.0).
 
