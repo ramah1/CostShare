@@ -1,5 +1,42 @@
-# costshare
-This application was generated using JHipster 4.10.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.10.0](http://www.jhipster.tech/documentation-archive/v4.10.0).
+# CostShare
+This application was generated using JHipster 4.9.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.9.0](http://www.jhipster.tech/documentation-archive/v4.9.0).
+
+## Requirements
+
+Damit entwickelt werden kann sind folgende Programme und Vorausetzungen nötig.
+### Software
+ - node.js (JavaScript Laufzeitumgebung)
+ - Yarn (Alternativer Packetmanager zu npm)
+ - Git (für Collaboration)
+ - Maven (Wenn über IntelliJ gestartet werden soll)
+ - PostgreSQL (https://www.openscg.com/bigsql/postgresql/installers.jsp/ VERSION 9.6)
+ 
+  - Yeoman-Gemerator (`yarn global add yo`)
+  - JHipster-Generator (`yarn global add generator-jhipster`)
+  
+
+### Systemvariablen (PATH)  
+
+Damit die Applikaion läuft sind folgende Umgebungsvariablen nötig
+
+- yarn
+- maven (mvn)
+- git
+- postgres (psql & createdb)
+
+### Datenbank
+Um die Applikation starten zu können wird eine lokale ProsgreSQL Datenbank benötig
+
+In der Kommandozeile:
+- Datenbank erstellen: `createdb -U postgres datenbankname`
+- Rolle(Benutzer) hinzufügen: ` psql -U postgres "CREATE ROLE benutzer/rollenName With LOGIN PASSWORD 'password';"`
+
+### Java Variablen
+In IntelliJ unter Run/Debug Configuration müssen folgende Umgebungsvariablen hinterlegt sein:
+- `JDBC_URL`    URL zur Datenbank (z. B.: `jdbc:postgresql://localhost:5432/costshare`)
+- `JDBC_PWD`    Passwort für die Datenbank
+- `JDBC_USER`   Benutzername für die Datenbank 
+ 
 
 ## Development
 
@@ -155,13 +192,13 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
 
 [JHipster Homepage and latest documentation]: http://www.jhipster.tech
-[JHipster 4.10.0 archive]: http://www.jhipster.tech/documentation-archive/v4.10.0
+[JHipster 4.9.0 archive]: http://www.jhipster.tech/documentation-archive/v4.9.0
 
-[Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.10.0/development/
-[Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.10.0/docker-compose
-[Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.10.0/production/
-[Running tests page]: http://www.jhipster.tech/documentation-archive/v4.10.0/running-tests/
-[Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.10.0/setting-up-ci/
+[Using JHipster in development]: http://www.jhipster.tech/documentation-archive/v4.9.0/development/
+[Using Docker and Docker-Compose]: http://www.jhipster.tech/documentation-archive/v4.9.0/docker-compose
+[Using JHipster in production]: http://www.jhipster.tech/documentation-archive/v4.9.0/production/
+[Running tests page]: http://www.jhipster.tech/documentation-archive/v4.9.0/running-tests/
+[Setting up Continuous Integration]: http://www.jhipster.tech/documentation-archive/v4.9.0/setting-up-ci/
 
 [Gatling]: http://gatling.io/
 [Node.js]: https://nodejs.org/
