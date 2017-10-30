@@ -28,6 +28,12 @@
             "otherEntityRelationshipName": "sentFrom"
         },
         {
+            "relationshipType": "many-to-one",
+            "relationshipName": "paid",
+            "otherEntityName": "cost",
+            "otherEntityField": "name"
+        },
+        {
             "relationshipType": "many-to-many",
             "relationshipName": "groups",
             "otherEntityName": "cSGroup",

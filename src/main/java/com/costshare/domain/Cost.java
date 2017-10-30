@@ -35,6 +35,10 @@ public class Cost implements Serializable {
     @Column(name = "sum", nullable = false)
     private Double sum;
 
+    @OneToMany(mappedBy = "paid")
+    @JsonIgnore
+    private Set<CSUser> paidBies = new HashSet<>();
+
     @OneToMany(mappedBy = "baseCost")
     @JsonIgnore
     private Set<UserCost> userCosts = new HashSet<>();
@@ -88,6 +92,31 @@ public class Cost implements Serializable {
 
     public void setSum(Double sum) {
         this.sum = sum;
+    }
+
+    public Set<CSUser> getPaidBies() {
+        return paidBies;
+    }
+
+    public Cost paidBies(Set<CSUser> cSUsers) {
+        this.paidBies = cSUsers;
+        return this;
+    }
+
+    public Cost addPaidBy(CSUser cSUser) {
+        this.paidBies.add(cSUser);
+        cSUser.setPaid(this);
+        return this;
+    }
+
+    public Cost removePaidBy(CSUser cSUser) {
+        this.paidBies.remove(cSUser);
+        cSUser.setPaid(null);
+        return this;
+    }
+
+    public void setPaidBies(Set<CSUser> cSUsers) {
+        this.paidBies = cSUsers;
     }
 
     public Set<UserCost> getUserCosts() {

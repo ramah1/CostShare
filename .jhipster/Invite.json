@@ -29,6 +29,10 @@
                 "required"
             ],
             "fieldValidateRulesMaxlength": 1000
+        },
+        {
+            "fieldName": "accepted",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20171023134709",

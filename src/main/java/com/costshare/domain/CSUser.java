@@ -41,6 +41,9 @@ public class CSUser implements Serializable {
     @JsonIgnore
     private Set<Invite> sentInvites = new HashSet<>();
 
+    @ManyToOne
+    private Cost paid;
+
     @ManyToMany(mappedBy = "members")
     @JsonIgnore
     private Set<CSGroup> groups = new HashSet<>();
@@ -157,6 +160,19 @@ public class CSUser implements Serializable {
 
     public void setSentInvites(Set<Invite> invites) {
         this.sentInvites = invites;
+    }
+
+    public Cost getPaid() {
+        return paid;
+    }
+
+    public CSUser paid(Cost cost) {
+        this.paid = cost;
+        return this;
+    }
+
+    public void setPaid(Cost cost) {
+        this.paid = cost;
     }
 
     public Set<CSGroup> getGroups() {

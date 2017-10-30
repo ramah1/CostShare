@@ -25,6 +25,9 @@ public class Invite implements Serializable {
     @Column(name = "jhi_comment", length = 1000, nullable = false)
     private String comment;
 
+    @Column(name = "accepted")
+    private Boolean accepted;
+
     @ManyToOne
     private CSGroup group;
 
@@ -54,6 +57,19 @@ public class Invite implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Boolean isAccepted() {
+        return accepted;
+    }
+
+    public Invite accepted(Boolean accepted) {
+        this.accepted = accepted;
+        return this;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
     }
 
     public CSGroup getGroup() {
@@ -121,6 +137,7 @@ public class Invite implements Serializable {
         return "Invite{" +
             "id=" + getId() +
             ", comment='" + getComment() + "'" +
+            ", accepted='" + isAccepted() + "'" +
             "}";
     }
 }

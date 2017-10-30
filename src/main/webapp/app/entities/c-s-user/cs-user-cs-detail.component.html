@@ -12,6 +12,12 @@
         <dd>
             {{cSUser.userNameLogin}}
         </dd>
+        <dt><span jhiTranslate="costshareApp.cSUser.paid">Paid</span></dt>
+        <dd>
+            <div *ngIf="cSUser.paidId">
+                <a [routerLink]="['/cost-cs', cSUser.paidId]">{{cSUser.paidName}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

@@ -20,6 +20,7 @@
             "userCosts": "User Costs",
             "receivedInvites": "Received Invites",
             "sentInvites": "Sent Invites",
+            "paid": "Paid",
             "groups": "Groups",
             "adminOf": "Admin Of"
         }

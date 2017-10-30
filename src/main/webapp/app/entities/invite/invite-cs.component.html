@@ -18,6 +18,7 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="costshareApp.invite.comment">Comment</span></th>
+            <th><span jhiTranslate="costshareApp.invite.accepted">Accepted</span></th>
             <th><span jhiTranslate="costshareApp.invite.group">Group</span></th>
             <th><span jhiTranslate="costshareApp.invite.sentTo">Sent To</span></th>
             <th><span jhiTranslate="costshareApp.invite.sentFrom">Sent From</span></th>
@@ -28,6 +29,7 @@
             <tr *ngFor="let invite of invites ;trackBy: trackId">
                 <td><a [routerLink]="['../invite-cs', invite.id ]">{{invite.id}}</a></td>
                 <td>{{invite.comment}}</td>
+                <td>{{invite.accepted}}</td>
                 <td>
                     <div *ngIf="invite.groupId">
                         <a [routerLink]="['../cs-group-cs', invite.groupId  ]" >{{invite.groupName}}</a>

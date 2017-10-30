@@ -10,6 +10,7 @@ import { CSUserCs } from './cs-user-cs.model';
 import { CSUserCsPopupService } from './cs-user-cs-popup.service';
 import { CSUserCsService } from './cs-user-cs.service';
 import { User, UserService } from '../../shared';
+import { CostCs, CostCsService } from '../cost';
 import { CSGroupCs, CSGroupCsService } from '../c-s-group';
 import { ResponseWrapper } from '../../shared';
 
@@ -24,6 +25,8 @@ export class CSUserCsDialogComponent implements OnInit {
 
     users: User[];
 
+    costs: CostCs[];
+
     csgroups: CSGroupCs[];
 
     constructor(
@@ -31,6 +34,7 @@ export class CSUserCsDialogComponent implements OnInit {
         private jhiAlertService: JhiAlertService,
         private cSUserService: CSUserCsService,
         private userService: UserService,
+        private costService: CostCsService,
         private cSGroupService: CSGroupCsService,
         private eventManager: JhiEventManager
     ) {
@@ -40,6 +44,8 @@ export class CSUserCsDialogComponent implements OnInit {
         this.isSaving = false;
         this.userService.query()
             .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.costService.query()
+            .subscribe((res: ResponseWrapper) => { this.costs = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.cSGroupService.query()
             .subscribe((res: ResponseWrapper) => { this.csgroups = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -79,6 +85,10 @@ export class CSUserCsDialogComponent implements OnInit {
     }
 
     trackUserById(index: number, item: User) {
+        return item.id;
+    }
+
+    trackCostById(index: number, item: CostCs) {
         return item.id;
     }
 

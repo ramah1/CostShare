@@ -8,6 +8,7 @@ export class CSUserCs implements BaseEntity {
         public userCosts?: BaseEntity[],
         public receivedInvites?: BaseEntity[],
         public sentInvites?: BaseEntity[],
+        public paidId?: number,
         public groups?: BaseEntity[],
         public adminOfs?: BaseEntity[],
     ) {

@@ -27,6 +27,11 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="costshareApp.invite.accepted" for="field_accepted">Accepted</label>
+            <input type="checkbox" class="form-control" name="accepted" id="field_accepted"
+                [(ngModel)]="invite.accepted"  />
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="costshareApp.invite.group" for="field_group">Group</label>

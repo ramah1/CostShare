@@ -18,6 +18,8 @@ public class InviteDTO implements Serializable {
     @Size(max = 1000)
     private String comment;
 
+    private Boolean accepted;
+
     private Long groupId;
 
     private String groupName;
@@ -44,6 +46,14 @@ public class InviteDTO implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(Boolean accepted) {
+        this.accepted = accepted;
     }
 
     public Long getGroupId() {
@@ -120,6 +130,7 @@ public class InviteDTO implements Serializable {
         return "InviteDTO{" +
             "id=" + getId() +
             ", comment='" + getComment() + "'" +
+            ", accepted='" + isAccepted() + "'" +
             "}";
     }
 }

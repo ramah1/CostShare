@@ -68,7 +68,7 @@ class InviteGatlingTest extends Simulation {
             .exec(http("Create new invite")
             .post("/api/invites")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "comment":"SAMPLE_TEXT"}""")).asJSON
+            .body(StringBody("""{"id":null, "comment":"SAMPLE_TEXT", "accepted":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_invite_url"))).exitHereIfFailed
             .pause(10)

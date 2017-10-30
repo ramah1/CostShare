@@ -18,6 +18,7 @@
             "name": "Name",
             "description": "Description",
             "sum": "Sum",
+            "paidBy": "Paid By",
             "userCosts": "User Costs",
             "group": "Group"
         }

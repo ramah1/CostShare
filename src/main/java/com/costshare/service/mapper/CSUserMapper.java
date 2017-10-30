@@ -8,17 +8,20 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity CSUser and its DTO CSUserDTO.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class})
+@Mapper(componentModel = "spring", uses = {UserMapper.class, CostMapper.class})
 public interface CSUserMapper extends EntityMapper<CSUserDTO, CSUser> {
 
     @Mapping(source = "userName.id", target = "userNameId")
     @Mapping(source = "userName.login", target = "userNameLogin")
+    @Mapping(source = "paid.id", target = "paidId")
+    @Mapping(source = "paid.name", target = "paidName")
     CSUserDTO toDto(CSUser cSUser); 
 
     @Mapping(source = "userNameId", target = "userName")
     @Mapping(target = "userCosts", ignore = true)
     @Mapping(target = "receivedInvites", ignore = true)
     @Mapping(target = "sentInvites", ignore = true)
+    @Mapping(source = "paidId", target = "paid")
     @Mapping(target = "groups", ignore = true)
     @Mapping(target = "adminOfs", ignore = true)
     CSUser toEntity(CSUserDTO cSUserDTO);

@@ -38,6 +38,7 @@ describe('CSUser e2e test', () => {
         cSUserDialogPage.setNameInput('name');
         expect(cSUserDialogPage.getNameInput()).toMatch('name');
         cSUserDialogPage.userNameSelectLastOption();
+        cSUserDialogPage.paidSelectLastOption();
         cSUserDialogPage.save();
         expect(cSUserDialogPage.getSaveButton().isPresent()).toBeFalsy();
     }); 
@@ -66,6 +67,7 @@ export class CSUserDialogPage {
     closeButton = element(by.css('button.close'));
     nameInput = element(by.css('input#field_name'));
     userNameSelect = element(by.css('select#field_userName'));
+    paidSelect = element(by.css('select#field_paid'));
 
     getModalTitle() {
         return this.modalTitle.getAttribute('jhiTranslate');
@@ -93,6 +95,22 @@ export class CSUserDialogPage {
 
     getUserNameSelectedOption = function () {
         return this.userNameSelect.element(by.css('option:checked')).getText();
+    }
+
+    paidSelectLastOption = function () {
+        this.paidSelect.all(by.tagName('option')).last().click();
+    }
+
+    paidSelectOption = function (option) {
+        this.paidSelect.sendKeys(option);
+    }
+
+    getPaidSelect = function () {
+        return this.paidSelect;
+    }
+
+    getPaidSelectedOption = function () {
+        return this.paidSelect.element(by.css('option:checked')).getText();
     }
 
     save() {

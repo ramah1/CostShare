@@ -37,6 +37,15 @@ describe('Invite e2e test', () => {
         inviteComponentsPage.clickOnCreateButton();
         inviteDialogPage.setCommentInput('comment');
         expect(inviteDialogPage.getCommentInput()).toMatch('comment');
+        inviteDialogPage.getAcceptedInput().isSelected().then(function (selected) {
+            if (selected) {
+                inviteDialogPage.getAcceptedInput().click();
+                expect(inviteDialogPage.getAcceptedInput().isSelected()).toBeFalsy();
+            } else {
+                inviteDialogPage.getAcceptedInput().click();
+                expect(inviteDialogPage.getAcceptedInput().isSelected()).toBeTruthy();
+            }
+        });
         inviteDialogPage.groupSelectLastOption();
         inviteDialogPage.sentToSelectLastOption();
         inviteDialogPage.sentFromSelectLastOption();
@@ -67,6 +76,7 @@ export class InviteDialogPage {
     saveButton = element(by.css('.modal-footer .btn.btn-primary'));
     closeButton = element(by.css('button.close'));
     commentInput = element(by.css('input#field_comment'));
+    acceptedInput = element(by.css('input#field_accepted'));
     groupSelect = element(by.css('select#field_group'));
     sentToSelect = element(by.css('select#field_sentTo'));
     sentFromSelect = element(by.css('select#field_sentFrom'));
@@ -83,6 +93,9 @@ export class InviteDialogPage {
         return this.commentInput.getAttribute('value');
     }
 
+    getAcceptedInput = function () {
+        return this.acceptedInput;
+    }
     groupSelectLastOption = function () {
         this.groupSelect.all(by.tagName('option')).last().click();
     }

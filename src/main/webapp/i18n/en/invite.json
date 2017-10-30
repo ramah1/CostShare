@@ -16,6 +16,7 @@
                 "title": "Invite"
             },
             "comment": "Comment",
+            "accepted": "Accepted",
             "group": "Group",
             "sentTo": "Sent To",
             "sentFrom": "Sent From"

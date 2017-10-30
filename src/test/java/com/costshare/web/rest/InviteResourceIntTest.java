@@ -43,6 +43,9 @@ public class InviteResourceIntTest {
     private static final String DEFAULT_COMMENT = "AAAAAAAAAA";
     private static final String UPDATED_COMMENT = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_ACCEPTED = false;
+    private static final Boolean UPDATED_ACCEPTED = true;
+
     @Autowired
     private InviteRepository inviteRepository;
 
@@ -86,7 +89,8 @@ public class InviteResourceIntTest {
      */
     public static Invite createEntity(EntityManager em) {
         Invite invite = new Invite()
-            .comment(DEFAULT_COMMENT);
+            .comment(DEFAULT_COMMENT)
+            .accepted(DEFAULT_ACCEPTED);
         return invite;
     }
 
@@ -112,6 +116,7 @@ public class InviteResourceIntTest {
         assertThat(inviteList).hasSize(databaseSizeBeforeCreate + 1);
         Invite testInvite = inviteList.get(inviteList.size() - 1);
         assertThat(testInvite.getComment()).isEqualTo(DEFAULT_COMMENT);
+        assertThat(testInvite.isAccepted()).isEqualTo(DEFAULT_ACCEPTED);
     }
 
     @Test
@@ -164,7 +169,8 @@ public class InviteResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(invite.getId().intValue())))
-            .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())));
+            .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())))
+            .andExpect(jsonPath("$.[*].accepted").value(hasItem(DEFAULT_ACCEPTED.booleanValue())));
     }
 
     @Test
@@ -178,7 +184,8 @@ public class InviteResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(invite.getId().intValue()))
-            .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()));
+            .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()))
+            .andExpect(jsonPath("$.accepted").value(DEFAULT_ACCEPTED.booleanValue()));
     }
 
     @Test
@@ -199,7 +206,8 @@ public class InviteResourceIntTest {
         // Update the invite
         Invite updatedInvite = inviteRepository.findOne(invite.getId());
         updatedInvite
-            .comment(UPDATED_COMMENT);
+            .comment(UPDATED_COMMENT)
+            .accepted(UPDATED_ACCEPTED);
         InviteDTO inviteDTO = inviteMapper.toDto(updatedInvite);
 
         restInviteMockMvc.perform(put("/api/invites")
@@ -212,6 +220,7 @@ public class InviteResourceIntTest {
         assertThat(inviteList).hasSize(databaseSizeBeforeUpdate);
         Invite testInvite = inviteList.get(inviteList.size() - 1);
         assertThat(testInvite.getComment()).isEqualTo(UPDATED_COMMENT);
+        assertThat(testInvite.isAccepted()).isEqualTo(UPDATED_ACCEPTED);
     }
 
     @Test

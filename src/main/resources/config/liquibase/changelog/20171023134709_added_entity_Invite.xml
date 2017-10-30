@@ -25,6 +25,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="accepted" type="boolean">
+                <constraints nullable="true" />
+            </column>
+
             <column name="group_id" type="bigint">
                 <constraints nullable="true" />
             </column>
