@@ -16,6 +16,12 @@
         <dd>
             <span>{{cost.sum}}</span>
         </dd>
+        <dt><span jhiTranslate="costshareApp.cost.paidBy">Paid By</span></dt>
+        <dd>
+            <div *ngIf="cost.paidById">
+                <a [routerLink]="['/cs-user-cs', cost.paidById]">{{cost.paidByName}}</a>
+            </div>
+        </dd>
         <dt><span jhiTranslate="costshareApp.cost.group">Group</span></dt>
         <dd>
             <div *ngIf="cost.groupId">

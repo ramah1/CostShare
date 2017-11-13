@@ -3,15 +3,15 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "paidBy",
-            "otherEntityName": "cSUser",
-            "otherEntityRelationshipName": "paid"
-        },
-        {
-            "relationshipType": "one-to-many",
             "relationshipName": "userCosts",
             "otherEntityName": "userCost",
             "otherEntityRelationshipName": "baseCost"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "paidBy",
+            "otherEntityName": "cSUser",
+            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-one",

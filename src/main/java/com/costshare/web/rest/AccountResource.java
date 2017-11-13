@@ -2,11 +2,14 @@ package com.costshare.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 
+import com.costshare.domain.CSUser;
 import com.costshare.domain.User;
 import com.costshare.repository.UserRepository;
 import com.costshare.security.SecurityUtils;
+import com.costshare.service.CSUserService;
 import com.costshare.service.MailService;
 import com.costshare.service.UserService;
+import com.costshare.service.dto.CSUserDTO;
 import com.costshare.service.dto.UserDTO;
 import com.costshare.web.rest.errors.*;
 import com.costshare.web.rest.vm.KeyAndPasswordVM;
@@ -37,11 +40,14 @@ public class AccountResource {
 
     private final MailService mailService;
 
-    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService) {
+    private final CSUserService csUserService;
+
+    public AccountResource(UserRepository userRepository, UserService userService, MailService mailService, CSUserService csUserService) {
 
         this.userRepository = userRepository;
         this.userService = userService;
         this.mailService = mailService;
+        this.csUserService = csUserService;
     }
 
     /**
@@ -62,7 +68,14 @@ public class AccountResource {
         userRepository.findOneByLogin(managedUserVM.getLogin().toLowerCase()).ifPresent(u -> {throw new LoginAlreadyUsedException();});
         userRepository.findOneByEmailIgnoreCase(managedUserVM.getEmail()).ifPresent(u -> {throw new EmailAlreadyUsedException();});
         User user = userService.registerUser(managedUserVM);
-        mailService.sendActivationEmail(user);
+//        mailService.sendActivationEmail(user);
+        CSUserDTO csUserDTO = new CSUserDTO();
+        csUserDTO.setName(user.getLogin());
+        csUserDTO.setUserNameLogin(user.getLogin());
+        csUserDTO.setUserNameId(user.getId());
+        csUserService.save(csUserDTO);
+
+
     }
 
     /**

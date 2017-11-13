@@ -29,6 +29,10 @@ public class CSUser implements Serializable {
     @JoinColumn(unique = true)
     private User userName;
 
+    @OneToMany(mappedBy = "paidBy")
+    @JsonIgnore
+    private Set<Cost> paids = new HashSet<>();
+
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private Set<UserCost> userCosts = new HashSet<>();
@@ -40,9 +44,6 @@ public class CSUser implements Serializable {
     @OneToMany(mappedBy = "sentFrom")
     @JsonIgnore
     private Set<Invite> sentInvites = new HashSet<>();
-
-    @ManyToOne
-    private Cost paid;
 
     @ManyToMany(mappedBy = "members")
     @JsonIgnore
@@ -85,6 +86,31 @@ public class CSUser implements Serializable {
 
     public void setUserName(User user) {
         this.userName = user;
+    }
+
+    public Set<Cost> getPaids() {
+        return paids;
+    }
+
+    public CSUser paids(Set<Cost> costs) {
+        this.paids = costs;
+        return this;
+    }
+
+    public CSUser addPaid(Cost cost) {
+        this.paids.add(cost);
+        cost.setPaidBy(this);
+        return this;
+    }
+
+    public CSUser removePaid(Cost cost) {
+        this.paids.remove(cost);
+        cost.setPaidBy(null);
+        return this;
+    }
+
+    public void setPaids(Set<Cost> costs) {
+        this.paids = costs;
     }
 
     public Set<UserCost> getUserCosts() {
@@ -160,19 +186,6 @@ public class CSUser implements Serializable {
 
     public void setSentInvites(Set<Invite> invites) {
         this.sentInvites = invites;
-    }
-
-    public Cost getPaid() {
-        return paid;
-    }
-
-    public CSUser paid(Cost cost) {
-        this.paid = cost;
-        return this;
-    }
-
-    public void setPaid(Cost cost) {
-        this.paid = cost;
     }
 
     public Set<CSGroup> getGroups() {

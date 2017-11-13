@@ -1,6 +1,7 @@
 package com.costshare.service;
 
 import com.costshare.domain.Authority;
+import com.costshare.domain.CSUser;
 import com.costshare.domain.User;
 import com.costshare.repository.AuthorityRepository;
 import com.costshare.config.Constants;
@@ -44,6 +45,7 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
+
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -96,9 +98,9 @@ public class UserService {
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
-        newUser.setActivated(false);
+        newUser.setActivated(true);
         // new user gets registration key
-        newUser.setActivationKey(RandomUtil.generateActivationKey());
+//        newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);

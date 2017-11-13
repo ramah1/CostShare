@@ -41,6 +41,7 @@ describe('Cost e2e test', () => {
         expect(costDialogPage.getDescriptionInput()).toMatch('description');
         costDialogPage.setSumInput('5');
         expect(costDialogPage.getSumInput()).toMatch('5');
+        costDialogPage.paidBySelectLastOption();
         costDialogPage.groupSelectLastOption();
         costDialogPage.save();
         expect(costDialogPage.getSaveButton().isPresent()).toBeFalsy();
@@ -71,6 +72,7 @@ export class CostDialogPage {
     nameInput = element(by.css('input#field_name'));
     descriptionInput = element(by.css('input#field_description'));
     sumInput = element(by.css('input#field_sum'));
+    paidBySelect = element(by.css('select#field_paidBy'));
     groupSelect = element(by.css('select#field_group'));
 
     getModalTitle() {
@@ -99,6 +101,22 @@ export class CostDialogPage {
 
     getSumInput = function () {
         return this.sumInput.getAttribute('value');
+    }
+
+    paidBySelectLastOption = function () {
+        this.paidBySelect.all(by.tagName('option')).last().click();
+    }
+
+    paidBySelectOption = function (option) {
+        this.paidBySelect.sendKeys(option);
+    }
+
+    getPaidBySelect = function () {
+        return this.paidBySelect;
+    }
+
+    getPaidBySelectedOption = function () {
+        return this.paidBySelect.element(by.css('option:checked')).getText();
     }
 
     groupSelectLastOption = function () {

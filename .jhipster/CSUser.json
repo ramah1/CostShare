@@ -11,6 +11,12 @@
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "paid",
+            "otherEntityName": "cost",
+            "otherEntityRelationshipName": "paidBy"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "userCosts",
             "otherEntityName": "userCost",
             "otherEntityRelationshipName": "user"
@@ -26,12 +32,6 @@
             "relationshipName": "sentInvites",
             "otherEntityName": "invite",
             "otherEntityRelationshipName": "sentFrom"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "relationshipName": "paid",
-            "otherEntityName": "cost",
-            "otherEntityField": "name"
         },
         {
             "relationshipType": "many-to-many",

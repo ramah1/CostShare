@@ -5,8 +5,10 @@ import com.codahale.metrics.annotation.Timed;
 import com.costshare.domain.User;
 import com.costshare.repository.UserRepository;
 import com.costshare.security.AuthoritiesConstants;
+import com.costshare.service.CSUserService;
 import com.costshare.service.MailService;
 import com.costshare.service.UserService;
+import com.costshare.service.dto.CSUserDTO;
 import com.costshare.service.dto.UserDTO;
 import com.costshare.web.rest.errors.BadRequestAlertException;
 import com.costshare.web.rest.errors.EmailAlreadyUsedException;
@@ -66,16 +68,19 @@ public class UserResource {
 
     private final UserRepository userRepository;
 
-    private final MailService mailService;
+//    private final MailService mailService;
 
     private final UserService userService;
 
+    private final CSUserService csUserService;
+
     public UserResource(UserRepository userRepository, MailService mailService,
-            UserService userService) {
+                        UserService userService, CSUserService csUserService) {
 
         this.userRepository = userRepository;
-        this.mailService = mailService;
+//        this.mailService = mailService;
         this.userService = userService;
+        this.csUserService = csUserService;
     }
 
     /**
@@ -105,11 +110,26 @@ public class UserResource {
             throw new EmailAlreadyUsedException();
         } else {
             User newUser = userService.createUser(managedUserVM);
-            mailService.sendCreationEmail(newUser);
+//            mailService.sendCreationEmail(newUser);
+            CSUserDTO csUserDTO = new CSUserDTO();
+            csUserDTO.setName(newUser.getLogin());
+            csUserDTO.setUserNameLogin(newUser.getLogin());
+            csUserDTO.setUserNameId(newUser.getId());
+            csUserService.save(csUserDTO);
+        //TODO: activate user
+        //TODO: create a new CSUser for.
+
+
+
             return ResponseEntity.created(new URI("/api/users/" + newUser.getLogin()))
                 .headers(HeaderUtil.createAlert( "userManagement.created", newUser.getLogin()))
                 .body(newUser);
         }
+
+
+
+
+
     }
 
     /**

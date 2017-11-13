@@ -20,6 +20,7 @@
             <th jhiSortBy="name"><span jhiTranslate="costshareApp.cost.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="costshareApp.cost.description">Description</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="sum"><span jhiTranslate="costshareApp.cost.sum">Sum</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="paidByName"><span jhiTranslate="costshareApp.cost.paidBy">Paid By</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="groupName"><span jhiTranslate="costshareApp.cost.group">Group</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -30,6 +31,11 @@
                 <td>{{cost.name}}</td>
                 <td>{{cost.description}}</td>
                 <td>{{cost.sum}}</td>
+                <td>
+                    <div *ngIf="cost.paidById">
+                        <a [routerLink]="['../cs-user-cs', cost.paidById  ]" >{{cost.paidByName}}</a>
+                    </div>
+                </td>
                 <td>
                     <div *ngIf="cost.groupId">
                         <a [routerLink]="['../cs-group-cs', cost.groupId  ]" >{{cost.groupName}}</a>

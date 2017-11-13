@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { CostCs } from './cost-cs.model';
 import { CostCsPopupService } from './cost-cs-popup.service';
 import { CostCsService } from './cost-cs.service';
+import { CSUserCs, CSUserCsService } from '../c-s-user';
 import { CSGroupCs, CSGroupCsService } from '../c-s-group';
 import { ResponseWrapper } from '../../shared';
 
@@ -21,12 +22,15 @@ export class CostCsDialogComponent implements OnInit {
     cost: CostCs;
     isSaving: boolean;
 
+    csusers: CSUserCs[];
+
     csgroups: CSGroupCs[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private costService: CostCsService,
+        private cSUserService: CSUserCsService,
         private cSGroupService: CSGroupCsService,
         private eventManager: JhiEventManager
     ) {
@@ -34,6 +38,8 @@ export class CostCsDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.cSUserService.query()
+            .subscribe((res: ResponseWrapper) => { this.csusers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.cSGroupService.query()
             .subscribe((res: ResponseWrapper) => { this.csgroups = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -70,6 +76,10 @@ export class CostCsDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackCSUserById(index: number, item: CSUserCs) {
+        return item.id;
     }
 
     trackCSGroupById(index: number, item: CSGroupCs) {

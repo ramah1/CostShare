@@ -14,11 +14,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="paid_id"
-                                 baseTableName="cs_user"
-                                 constraintName="fk_csuser_paid_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="cost"/>
-
     </changeSet>
 </databaseChangeLog>
