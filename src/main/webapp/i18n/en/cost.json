@@ -3,7 +3,7 @@
         "cost" : {
             "home": {
                 "title": "Costs",
-                "createLabel": "Create a new Cost",
+                "createLabel": "New Cost",
                 "createOrEditLabel": "Create or edit a Cost"
             },
             "created": "A new Cost is created with identifier {{ param }}",

@@ -12,6 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 /**
  * Service Implementation for managing UserCost.
@@ -82,5 +86,13 @@ public class UserCostServiceImpl implements UserCostService{
     public void delete(Long id) {
         log.debug("Request to delete UserCost : {}", id);
         userCostRepository.delete(id);
+    }
+
+    @Override
+    public List<UserCostDTO> findAllByCostId(Long id) {
+        log.debug("Request to get all UserCost by CostId : {}", id);
+        return userCostRepository.findAllByBaseCost(id).stream()
+            .map(userCostMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 }

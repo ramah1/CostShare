@@ -20,6 +20,7 @@ export class UserCostCsComponent implements OnInit, OnDestroy {
     links: any;
     page: any;
     predicate: any;
+    sum: any;
     queryCount: any;
     reverse: any;
     totalItems: number;
@@ -34,6 +35,7 @@ export class UserCostCsComponent implements OnInit, OnDestroy {
         this.userCosts = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.page = 0;
+        /*this.sum = this.*/
         this.links = {
             last: 0
         };
@@ -45,6 +47,7 @@ export class UserCostCsComponent implements OnInit, OnDestroy {
         this.userCostService.query({
             page: this.page,
             size: this.itemsPerPage,
+            /*sum: this.sum,*/
             sort: this.sort()
         }).subscribe(
             (res: ResponseWrapper) => this.onSuccess(res.json, res.headers),

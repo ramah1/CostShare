@@ -81,6 +81,12 @@ export class CostCsComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('costListModification', (response) => this.reset());
     }
 
+    calculMyPart(){
+        for (let sum of this.costs){
+            console.log(sum);
+        }
+    }
+
     sort() {
         const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
         if (this.predicate !== 'id') {

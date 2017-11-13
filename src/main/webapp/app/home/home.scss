@@ -24,3 +24,12 @@ only screen and (                min-resolution: 2dppx) {
         background-size: contain;
     }
 }
+
+.vertical-center {
+    display: table;
+    vertical-align: middle;
+}
+
+button + button{
+    margin-left: 2.5px;
+}

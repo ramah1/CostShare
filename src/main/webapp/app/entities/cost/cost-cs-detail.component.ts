@@ -1,10 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { JhiEventManager } from 'ng-jhipster';
+import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 
 import { CostCs } from './cost-cs.model';
 import { CostCsService } from './cost-cs.service';
+import {UserCostCs} from "../user-cost/user-cost-cs.model";
+import {UserCostCsService} from "../user-cost/user-cost-cs.service";
+import {ResponseWrapper} from "../../shared/model/response-wrapper.model";
 
 @Component({
     selector: 'jhi-cost-cs-detail',
@@ -13,13 +16,16 @@ import { CostCsService } from './cost-cs.service';
 export class CostCsDetailComponent implements OnInit, OnDestroy {
 
     cost: CostCs;
+    userCosts: UserCostCs[];
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
     constructor(
         private eventManager: JhiEventManager,
         private costService: CostCsService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private userCostService: UserCostCsService,
+        private jhiAlertService: JhiAlertService
     ) {
     }
 
@@ -34,7 +40,22 @@ export class CostCsDetailComponent implements OnInit, OnDestroy {
         this.costService.find(id).subscribe((cost) => {
             this.cost = cost;
         });
+        this.userCostService.findByCostId(id).subscribe(
+            (res: ResponseWrapper) => this.onSuccess(res.json),
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
     }
+
+    private onSuccess(data) {
+        for (let i = 0; i < data.length; i++) {
+            this.userCosts.push(data[i]);
+        }
+    }
+
+    private onError(error) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
     previousState() {
         window.history.back();
     }

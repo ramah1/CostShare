@@ -57,7 +57,11 @@
                 },
                 "register": {
                     "noaccount": "You don't have an account yet?",
-                    "link": "Register a new account"
+                    "link": "Sign up"
+                },
+                "login":{
+                    "anaccount": "Do you have an account?",
+                    "link": "Sign in"
                 }
             },
             "error": {

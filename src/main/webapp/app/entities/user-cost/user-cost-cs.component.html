@@ -16,11 +16,11 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="multiplier"><span jhiTranslate="costshareApp.userCost.multiplier">Multiplier</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="baseCostName"><span jhiTranslate="costshareApp.userCost.baseCost">Base Cost</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="userName"><span jhiTranslate="costshareApp.userCost.user">User</span> <span class="fa fa-sort"></span></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="multiplier"><span jhiTranslate="costshareApp.userCost.multiplier">Multiplier</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="baseCostName"><span jhiTranslate="costshareApp.userCost.baseCost">Base Cost</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="userName"><span jhiTranslate="costshareApp.userCost.user">User</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="part"><span jhiTranslate="costshareApp.userCost.myPart">My part</span> <span class="fa fa-sort"></span></th>
             </tr>
             </thead>
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
@@ -35,6 +35,11 @@
                 <td>
                     <div *ngIf="userCost.userId">
                         <a [routerLink]="['../cs-user-cs', userCost.userId  ]" >{{userCost.userName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="userCost.userId">
+                        <a [routerLink]="['../cs-user-cs', userCost.userId  ]" >{{userCost.multiplier * userCost.baseCostId}}</a>
                     </div>
                 </td>
                 <td class="text-right">
