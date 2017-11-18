@@ -42,5 +42,5 @@ public interface UserCostService {
      */
     void delete(Long id);
 
-    List<UserCostDTO> findAllByCostId(Long id);
+    List<UserCostDTO> findAllByCostId(int id);
 }

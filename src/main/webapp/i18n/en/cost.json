@@ -20,7 +20,8 @@
             "sum": "Sum",
             "paidBy": "Paid By",
             "userCosts": "User Costs",
-            "group": "Group"
+            "group": "Group",
+            "users": "Users"
         }
     }
 }

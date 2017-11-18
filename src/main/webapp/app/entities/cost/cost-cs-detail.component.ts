@@ -31,7 +31,7 @@ export class CostCsDetailComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.subscription = this.route.params.subscribe((params) => {
-            this.load(params['id']);
+            this.load(parseInt(params['id']));
         });
         this.registerChangeInCosts();
     }
@@ -39,11 +39,11 @@ export class CostCsDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.costService.find(id).subscribe((cost) => {
             this.cost = cost;
+            this.userCostService.findByCostId(this.cost.id).subscribe((res) =>
+               /* (res: ResponseWrapper) => this.onSuccess(res.json),
+                (res: ResponseWrapper) => this.onError(res.json)*/
+               this.userCosts = res.json());
         });
-        this.userCostService.findByCostId(id).subscribe(
-            (res: ResponseWrapper) => this.onSuccess(res.json),
-            (res: ResponseWrapper) => this.onError(res.json)
-        );
     }
 
     private onSuccess(data) {
