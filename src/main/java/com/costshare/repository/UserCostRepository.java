@@ -15,5 +15,5 @@ import java.util.List;
 @Repository
 public interface UserCostRepository extends JpaRepository<UserCost, Long> {
 
-    public List<UserCost> findAllByBaseCost(int id);
+    public List<UserCost> findAllByBaseCostId(Long id);
 }

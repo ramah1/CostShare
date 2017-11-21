@@ -89,9 +89,9 @@ public class UserCostServiceImpl implements UserCostService{
     }
 
     @Override
-    public List<UserCostDTO> findAllByCostId(int id) {
+    public List<UserCostDTO> findAllByCostId(Long id) {
         log.debug("Request to get all UserCost by CostId : {}", id);
-        return userCostRepository.findAllByBaseCost(id).stream()
+        return userCostRepository.findAllByBaseCostId(id).stream()
             .map(userCostMapper::toDto)
             .collect(Collectors.toCollection(LinkedList::new));
     }

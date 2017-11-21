@@ -6,6 +6,7 @@ export class UserCostCs implements BaseEntity {
         public multiplier?: number,
         public baseCostId?: number,
         public userId?: number,
+        public myPart?: number,
     ) {
     }
 }

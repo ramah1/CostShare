@@ -128,7 +128,7 @@ public class UserCostResource {
 
     @GetMapping("/costs/{id}/user-costs")
     @Timed
-    public ResponseEntity<List<UserCostDTO>> getUserCostsByCostID(@PathVariable int id) {
+    public ResponseEntity<List<UserCostDTO>> getUserCostsByCostID(@PathVariable Long id) {
         log.debug("REST request to get a page of UserCosts");
         List<UserCostDTO> list = userCostService.findAllByCostId(id);
         return new ResponseEntity<>(list, HttpStatus.OK);

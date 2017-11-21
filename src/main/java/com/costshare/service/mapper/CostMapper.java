@@ -13,7 +13,7 @@ public interface CostMapper extends EntityMapper<CostDTO, Cost> {
 
     @Mapping(source = "group.id", target = "groupId")
     @Mapping(source = "group.name", target = "groupName")
-    CostDTO toDto(Cost cost); 
+    CostDTO toDto(Cost cost);
 
     @Mapping(target = "paidBies", ignore = true)
     @Mapping(target = "userCosts", ignore = true)

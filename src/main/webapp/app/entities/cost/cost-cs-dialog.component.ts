@@ -61,6 +61,7 @@ export class CostCsDialogComponent implements OnInit {
     private onSaveSuccess(result: CostCs) {
         this.eventManager.broadcast({ name: 'costListModification', content: 'OK'});
         this.isSaving = false;
+        window.location.reload();
         this.activeModal.dismiss(result);
     }
 

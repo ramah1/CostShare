@@ -38,7 +38,7 @@ export class UserCostCsService {
 
     findByCostId(id: number): Observable<ResponseWrapper> {
         return this.http.get(SERVER_API_URL + 'api/costs/'+id+'/user-costs')
-            .map((res: ResponseWrapper) => this.convertResponse(res.json()));
+            .map((res: Response) => this.convertResponse(res));
     }
 
     query(req?: any): Observable<ResponseWrapper> {

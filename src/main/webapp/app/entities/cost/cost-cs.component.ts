@@ -66,6 +66,7 @@ export class CostCsComponent implements OnInit, OnDestroy {
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
+            console.log(this.currentAccount);
         });
         this.registerChangeInCosts();
     }

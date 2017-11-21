@@ -21,7 +21,8 @@
             "paidBy": "Paid By",
             "userCosts": "User Costs",
             "group": "Group",
-            "users": "Users"
+            "users": "Users",
+            "user": "User"
         }
     }
 }

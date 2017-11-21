@@ -17,8 +17,7 @@
             },
             "multiplier": "Multiplier",
             "baseCost": "Base Cost",
-            "user": "User",
-            "myPart": "My part"
+            "user": "User"
         }
     }
 }
