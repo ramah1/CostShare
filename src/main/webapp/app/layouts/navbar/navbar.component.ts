@@ -5,6 +5,7 @@ import { JhiLanguageService } from 'ng-jhipster';
 
 import { ProfileService } from '../profiles/profile.service';
 import { JhiLanguageHelper, Principal, LoginModalService, LoginService } from '../../shared';
+import { InviteCsService} from "../../entities/invite/invite-cs.service";
 
 import { VERSION } from '../../app.constants';
 
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
+    userinvites;
 
     constructor(
         private loginService: LoginService,
@@ -30,7 +32,8 @@ export class NavbarComponent implements OnInit {
         private principal: Principal,
         private loginModalService: LoginModalService,
         private profileService: ProfileService,
-        private router: Router
+        private router: Router,
+        private inviteService: InviteCsService
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -45,6 +48,7 @@ export class NavbarComponent implements OnInit {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
+        this.inviteService.getAllInvitesForUser();
     }
 
     changeLanguage(languageKey: string) {

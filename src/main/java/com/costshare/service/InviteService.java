@@ -37,4 +37,6 @@ public interface InviteService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<InviteDTO> findAllByCSUser(Long id);
 }

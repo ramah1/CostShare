@@ -116,4 +116,14 @@ public class InviteResource {
         inviteService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+
+
+
+    @GetMapping("/c-s-user/{id}/invites")
+    @Timed
+    public  List<InviteDTO> getAllInvitesForCSUser(@PathVariable Long id){
+     log.debug("REST request to get all invites for csuser : {}", id);
+     return inviteService.findAllByCSUser(id);
+    }
 }

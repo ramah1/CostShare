@@ -42,6 +42,10 @@ export class InviteCsService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    getAllInvitesForUser() {
+        return this.http.get(SERVER_API_URL + 'api/c-s-user/'+ +'/invites')
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }
