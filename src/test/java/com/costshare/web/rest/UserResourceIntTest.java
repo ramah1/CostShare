@@ -5,6 +5,7 @@ import com.costshare.domain.Authority;
 import com.costshare.domain.User;
 import com.costshare.repository.UserRepository;
 import com.costshare.security.AuthoritiesConstants;
+import com.costshare.service.CSUserService;
 import com.costshare.service.MailService;
 import com.costshare.service.UserService;
 import com.costshare.service.dto.UserDTO;
@@ -86,6 +87,9 @@ public class UserResourceIntTest {
     private UserMapper userMapper;
 
     @Autowired
+    private CSUserService csUserService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -104,7 +108,7 @@ public class UserResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        UserResource userResource = new UserResource(userRepository, mailService, userService);
+        UserResource userResource = new UserResource(userRepository, mailService, userService, csUserService);
         this.restUserMockMvc = MockMvcBuilders.standaloneSetup(userResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

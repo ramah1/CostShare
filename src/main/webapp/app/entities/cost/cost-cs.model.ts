@@ -6,8 +6,8 @@ export class CostCs implements BaseEntity {
         public name?: string,
         public description?: string,
         public sum?: number,
-        public paidBies?: BaseEntity[],
         public userCosts?: BaseEntity[],
+        public paidById?: number,
         public groupId?: number,
     ) {
     }

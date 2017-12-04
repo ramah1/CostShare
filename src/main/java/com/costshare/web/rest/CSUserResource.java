@@ -115,4 +115,12 @@ public class CSUserResource {
         cSUserService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/current-cs-user/")
+    @Timed
+    public ResponseEntity<CSUserDTO> getCSUserByAuthenticatedJHiUser(){
+        log.debug("REST request to get CSUser by authenticated JHiUser");
+        CSUserDTO csUserDTO = cSUserService.findOneByAuthenticatedUser();
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(csUserDTO));
+    }
 }

@@ -32,7 +32,7 @@ export class InviteCsDialogComponent implements OnInit {
         private inviteService: InviteCsService,
         private cSGroupService: CSGroupCsService,
         private cSUserService: CSUserCsService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
     ) {
     }
 
@@ -42,6 +42,7 @@ export class InviteCsDialogComponent implements OnInit {
             .subscribe((res: ResponseWrapper) => { this.csgroups = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.cSUserService.query()
             .subscribe((res: ResponseWrapper) => { this.csusers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        this.cSUserService.findCurrentUser().subscribe(res => this.invite.sentFromId = res.id);
     }
 
     clear() {

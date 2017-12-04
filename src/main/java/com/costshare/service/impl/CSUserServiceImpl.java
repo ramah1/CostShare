@@ -1,5 +1,6 @@
 package com.costshare.service.impl;
 
+import com.costshare.security.SecurityUtils;
 import com.costshare.service.CSUserService;
 import com.costshare.domain.CSUser;
 import com.costshare.repository.CSUserRepository;
@@ -84,4 +85,12 @@ public class CSUserServiceImpl implements CSUserService{
         log.debug("Request to delete CSUser : {}", id);
         cSUserRepository.delete(id);
     }
+
+    @Override
+    public CSUserDTO findOneByAuthenticatedUser() {
+        log.debug("Requset to find CSUser by activated user");
+        CSUser csuser = cSUserRepository.findOneByAuthenticatedJHiUser(SecurityUtils.getCurrentUserLogin());
+        return cSUserMapper.toDto(csuser);
+    }
+
 }

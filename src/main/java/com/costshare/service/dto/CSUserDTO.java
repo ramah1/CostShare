@@ -19,10 +19,6 @@ public class CSUserDTO implements Serializable {
 
     private String userNameLogin;
 
-    private Long paidId;
-
-    private String paidName;
-
     public Long getId() {
         return id;
     }
@@ -53,22 +49,6 @@ public class CSUserDTO implements Serializable {
 
     public void setUserNameLogin(String userLogin) {
         this.userNameLogin = userLogin;
-    }
-
-    public Long getPaidId() {
-        return paidId;
-    }
-
-    public void setPaidId(Long costId) {
-        this.paidId = costId;
-    }
-
-    public String getPaidName() {
-        return paidName;
-    }
-
-    public void setPaidName(String costName) {
-        this.paidName = costName;
     }
 
     @Override

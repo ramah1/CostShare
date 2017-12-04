@@ -9,11 +9,11 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { CostCs } from './cost-cs.model';
 import { CostCsPopupService } from './cost-cs-popup.service';
 import { CostCsService } from './cost-cs.service';
+import { CSUserCs, CSUserCsService } from '../c-s-user';
 import { CSGroupCs, CSGroupCsService } from '../c-s-group';
 import { ResponseWrapper } from '../../shared';
 import {Principal} from "../../shared/auth/principal.service";
-import {CSUserCsService} from "../c-s-user/cs-user-cs.service";
-import {CSUserCs} from "../c-s-user/cs-user-cs.model";
+
 
 @Component({
     selector: 'jhi-cost-cs-dialog',
@@ -25,13 +25,16 @@ export class CostCsDialogComponent implements OnInit {
     isSaving: boolean;
     currentAccount: any;
 
+    csusers: CSUserCs[];
+
     csgroups: CSGroupCs[];
-    csusers: CSUserCs [];
+
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private costService: CostCsService,
+        private cSUserService: CSUserCsService,
         private cSGroupService: CSGroupCsService,
         private eventManager: JhiEventManager,
         private principal: Principal,
@@ -41,6 +44,8 @@ export class CostCsDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.cSUserService.query()
+            .subscribe((res: ResponseWrapper) => { this.csusers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.cSGroupService.query()
             .subscribe((res: ResponseWrapper) => { this.csgroups = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         //this.principal.identity().then((account) => {
@@ -84,6 +89,10 @@ export class CostCsDialogComponent implements OnInit {
 
     private onError(error: any) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackCSUserById(index: number, item: CSUserCs) {
+        return item.id;
     }
 
     trackCSGroupById(index: number, item: CSGroupCs) {

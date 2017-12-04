@@ -125,4 +125,12 @@ public class CostResource {
         costService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    public Boolean validateCostSum(CostDTO costDTO){
+        if (costDTO.getSum() < 0){
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -37,4 +37,11 @@ public interface CSUserService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    /**
+     * Get CSUser by accessing it with authenticated user
+     *
+     * @return the entity
+     */
+    CSUserDTO findOneByAuthenticatedUser();
 }

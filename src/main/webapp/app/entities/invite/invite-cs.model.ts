@@ -6,6 +6,7 @@ export class InviteCs implements BaseEntity {
         public comment?: string,
         public accepted?: boolean,
         public groupId?: number,
+        public groupName?: string,
         public sentToId?: number,
         public sentFromId?: number,
     ) {

@@ -84,4 +84,13 @@ public class InviteServiceImpl implements InviteService{
         log.debug("Request to delete Invite : {}", id);
         inviteRepository.delete(id);
     }
+
+    @Override
+    public List<InviteDTO> findAllByCSUser(Long id) {
+        log.debug("Request to find all invites by csuser");
+        return inviteRepository.findAllBySentTo_Id(id)
+            .stream()
+            .map(inviteMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
+    }
 }

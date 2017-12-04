@@ -1,7 +1,9 @@
 package com.costshare.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.costshare.service.CSUserService;
 import com.costshare.service.InviteService;
+import com.costshare.service.dto.CSUserDTO;
 import com.costshare.web.rest.errors.BadRequestAlertException;
 import com.costshare.web.rest.util.HeaderUtil;
 import com.costshare.service.dto.InviteDTO;
@@ -31,8 +33,11 @@ public class InviteResource {
 
     private final InviteService inviteService;
 
-    public InviteResource(InviteService inviteService) {
+    private final CSUserService csUserService;
+
+    public InviteResource(InviteService inviteService, CSUserService csUserService) {
         this.inviteService = inviteService;
+        this.csUserService = csUserService;
     }
 
     /**
@@ -49,6 +54,8 @@ public class InviteResource {
         if (inviteDTO.getId() != null) {
             throw new BadRequestAlertException("A new invite cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+
         InviteDTO result = inviteService.save(inviteDTO);
         return ResponseEntity.created(new URI("/api/invites/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -116,4 +123,15 @@ public class InviteResource {
         inviteService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+
+    @GetMapping("/current-cs-user/invites")
+    @Timed
+    public  List<InviteDTO> getAllInvitesForCSUser(){
+     CSUserDTO currentUser = csUserService.findOneByAuthenticatedUser();
+     log.debug("REST request to get all invites for csuser : {}", currentUser);
+     return inviteService.findAllByCSUser(currentUser.getId());
+    }
+
+
 }

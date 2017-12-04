@@ -19,7 +19,6 @@
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="costshareApp.cSUser.name">Name</span></th>
             <th><span jhiTranslate="costshareApp.cSUser.userName">User Name</span></th>
-            <th><span jhiTranslate="costshareApp.cSUser.paid">Paid</span></th>
             <th></th>
             </tr>
             </thead>
@@ -29,11 +28,6 @@
                 <td>{{cSUser.name}}</td>
                 <td>
                     {{cSUser.userNameLogin}}
-                </td>
-                <td>
-                    <div *ngIf="cSUser.paidId">
-                        <a [routerLink]="['../cost-cs', cSUser.paidId  ]" >{{cSUser.paidName}}</a>
-                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

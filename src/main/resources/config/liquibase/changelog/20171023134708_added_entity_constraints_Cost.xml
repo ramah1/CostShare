@@ -8,6 +8,12 @@
     -->
     <changeSet id="20171023134708-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="paid_by_id"
+                                 baseTableName="cost"
+                                 constraintName="fk_cost_paid_by_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="cs_user"/>
+
         <addForeignKeyConstraint baseColumnNames="group_id"
                                  baseTableName="cost"
                                  constraintName="fk_cost_group_id"

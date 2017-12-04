@@ -23,6 +23,10 @@ public class CostDTO implements Serializable {
     @NotNull
     private Double sum;
 
+    private Long paidById;
+
+    private String paidByName;
+
     private Long groupId;
 
     private String groupName;
@@ -57,6 +61,22 @@ public class CostDTO implements Serializable {
 
     public void setSum(Double sum) {
         this.sum = sum;
+    }
+
+    public Long getPaidById() {
+        return paidById;
+    }
+
+    public void setPaidById(Long cSUserId) {
+        this.paidById = cSUserId;
+    }
+
+    public String getPaidByName() {
+        return paidByName;
+    }
+
+    public void setPaidByName(String cSUserName) {
+        this.paidByName = cSUserName;
     }
 
     public Long getGroupId() {
