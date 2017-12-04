@@ -41,6 +41,17 @@ export const invitePopupRoute: Routes = [
         outlet: 'popup'
     },
     {
+        path: 'invite-cs-new/:id',
+        component: InviteCsPopupComponent,
+        data: {
+            authorities: ['ROLE_USER'],
+            pageTitle: 'costshareApp.invite.home.title'
+        },
+        canActivate: [UserRouteAccessService],
+        outlet: 'popup'
+    }
+    ,
+    {
         path: 'invite-cs/:id/edit',
         component: InviteCsPopupComponent,
         data: {
