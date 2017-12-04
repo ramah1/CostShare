@@ -18,9 +18,11 @@
             "name": "Name",
             "description": "Description",
             "sum": "Sum",
-            "userCosts": "User Costs",
             "paidBy": "Paid By",
-            "group": "Group"
+            "userCosts": "User Costs",
+            "group": "Group",
+            "users": "Users",
+            "user": "User"
         }
     }
 }

@@ -3,7 +3,7 @@
         "cSGroup" : {
             "home": {
                 "title": "CS Groups",
-                "createLabel": "Create a new CS Group",
+                "createLabel": "New CS Group",
                 "createOrEditLabel": "Create or edit a CS Group"
             },
             "created": "A new CS Group is created with identifier {{ param }}",

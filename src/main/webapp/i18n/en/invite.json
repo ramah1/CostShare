@@ -3,7 +3,7 @@
         "invite" : {
             "home": {
                 "title": "Invites",
-                "createLabel": "Create a new Invite",
+                "createLabel": "New Invite",
                 "createOrEditLabel": "Create or edit a Invite"
             },
             "created": "A new Invite is created with identifier {{ param }}",

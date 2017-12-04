@@ -4,6 +4,8 @@ import com.costshare.service.dto.UserCostDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /**
  * Service Interface for managing UserCost.
  */
@@ -39,4 +41,6 @@ public interface UserCostService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+
+    List<UserCostDTO> findAllByCostId(Long id);
 }

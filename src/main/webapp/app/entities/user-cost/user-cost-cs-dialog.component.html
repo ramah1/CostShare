@@ -15,14 +15,14 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="costshareApp.userCost.multiplier" for="field_multiplier">Multiplier</label>
             <input type="number" class="form-control" name="multiplier" id="field_multiplier"
-                [(ngModel)]="userCost.multiplier" required />
+                   [(ngModel)]="userCost.multiplier" required />
             <div [hidden]="!(editForm.controls.multiplier?.dirty && editForm.controls.multiplier?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.multiplier?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
+                       [hidden]="!editForm.controls.multiplier?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
                 </small>
                 <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.multiplier?.errors?.number" jhiTranslate="entity.validation.number">
+                       [hidden]="!editForm.controls.multiplier?.errors?.number" jhiTranslate="entity.validation.number">
                     This field should be a number.
                 </small>
             </div>

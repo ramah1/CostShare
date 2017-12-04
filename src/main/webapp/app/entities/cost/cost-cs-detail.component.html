@@ -1,35 +1,55 @@
 
 <div *ngIf="cost">
+    <jhi-alert></jhi-alert>
     <h2><span jhiTranslate="costshareApp.cost.detail.title">Cost</span> {{cost.id}}</h2>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
+    <!--<jhi-alert-error></jhi-alert-error>-->
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="costshareApp.cost.name">Name</span></dt>
-        <dd>
-            <span>{{cost.name}}</span>
-        </dd>
         <dt><span jhiTranslate="costshareApp.cost.description">Description</span></dt>
-        <dd>
-            <span>{{cost.description}}</span>
-        </dd>
-        <dt><span jhiTranslate="costshareApp.cost.sum">Sum</span></dt>
-        <dd>
-            <span>{{cost.sum}}</span>
-        </dd>
-        <dt><span jhiTranslate="costshareApp.cost.paidBy">Paid By</span></dt>
-        <dd>
-            <div *ngIf="cost.paidById">
-                <a [routerLink]="['/cs-user-cs', cost.paidById]">{{cost.paidByName}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="costshareApp.cost.group">Group</span></dt>
-        <dd>
-            <div *ngIf="cost.groupId">
-                <a [routerLink]="['/cs-group-cs', cost.groupId]">{{cost.groupName}}</a>
-            </div>
-        </dd>
+        <table>
+            <tr>
+                <th><span jhiTranslate="costshareApp.cost.name">Name</span></th>
+                <th><span jhiTranslate="costshareApp.cost.description">Description</span></th>
+                <th><span jhiTranslate="costshareApp.cost.sum">Sum</span></th>
+                <th><span jhiTranslate="costshareApp.cost.group">Group</span></th>
+            </tr>
+            <tr>
+                <td>{{cost.name}}</td>
+                <td>{{cost.description}}</td>
+                <td>{{cost.sum}}</td>
+                <th><div *ngIf="cost.groupId">
+                    <a [routerLink]="['/cs-group-cs', cost.groupId]">{{cost.groupName}}</a>
+                </div>
+                </th>
+            </tr>
+        </table>
+        <dt><span jhiTranslate="costshareApp.cost.paidBy">Paid by</span></dt>
+        <table>
+            <tr>
+                <th>User</th>
+                <th>Sum</th>
+            </tr>
+        <tr>
+            <td>{{currentAccount.login}}</td>
+            <td>{{cost.sum}}</td>
+        </tr>
+        </table>
+        <dt><span jhiTranslate="costshareApp.cost.users">Users</span></dt>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Multiplier</th>
+                <th>My part</th>
+            </tr>
+            <tr *ngFor="let userCost of userCosts">
+                <td>{{userCost.id}}</td>
+                <td>{{userCost.userName}}</td>
+                <td>{{userCost.multiplier}}</td>
+                <td>{{userCost.myPart}}</td>
+            </tr>
+        </table>
     </dl>
-
     <button type="submit"
             (click)="previousState()"
             class="btn btn-info">

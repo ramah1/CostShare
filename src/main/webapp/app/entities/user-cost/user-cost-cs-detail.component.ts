@@ -27,6 +27,7 @@ export class UserCostCsDetailComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe((params) => {
             this.load(params['id']);
         });
+
         this.registerChangeInUserCosts();
     }
 

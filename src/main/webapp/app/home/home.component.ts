@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
+/*import {CSGroupCsComponent} from '../entities/c-s-group';*/
 
-import { Account, LoginModalService, Principal } from '../shared';
+import { Account, LoginModalService, Principal,  } from '../shared';
 
 @Component({
     selector: 'jhi-home',
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+       /* private cSGroupCsComponent: CSGroupCsComponent*/
     ) {
     }
 

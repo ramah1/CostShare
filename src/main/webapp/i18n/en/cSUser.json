@@ -3,7 +3,7 @@
         "cSUser" : {
             "home": {
                 "title": "CS Users",
-                "createLabel": "Create a new CS User",
+                "createLabel": "New CS User",
                 "createOrEditLabel": "Create or edit a CS User"
             },
             "created": "A new CS User is created with identifier {{ param }}",

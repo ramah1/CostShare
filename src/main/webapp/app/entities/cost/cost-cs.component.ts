@@ -66,6 +66,7 @@ export class CostCsComponent implements OnInit, OnDestroy {
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
+            console.log(this.currentAccount);
         });
         this.registerChangeInCosts();
     }
@@ -79,6 +80,12 @@ export class CostCsComponent implements OnInit, OnDestroy {
     }
     registerChangeInCosts() {
         this.eventSubscriber = this.eventManager.subscribe('costListModification', (response) => this.reset());
+    }
+
+    calculMyPart(){
+        for (let sum of this.costs){
+            console.log(sum);
+        }
     }
 
     sort() {

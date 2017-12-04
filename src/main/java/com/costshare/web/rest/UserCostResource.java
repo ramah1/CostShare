@@ -125,4 +125,12 @@ public class UserCostResource {
         userCostService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/costs/{id}/user-costs")
+    @Timed
+    public ResponseEntity<List<UserCostDTO>> getUserCostsByCostID(@PathVariable Long id) {
+        log.debug("REST request to get a page of UserCosts");
+        List<UserCostDTO> list = userCostService.findAllByCostId(id);
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
 }
