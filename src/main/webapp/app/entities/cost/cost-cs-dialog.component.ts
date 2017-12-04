@@ -13,8 +13,7 @@ import { CSUserCs, CSUserCsService } from '../c-s-user';
 import { CSGroupCs, CSGroupCsService } from '../c-s-group';
 import { ResponseWrapper } from '../../shared';
 import {Principal} from "../../shared/auth/principal.service";
-import {CSUserCsService} from "../c-s-user/cs-user-cs.service";
-import {CSUserCs} from "../c-s-user/cs-user-cs.model";
+
 
 @Component({
     selector: 'jhi-cost-cs-dialog',
@@ -29,7 +28,7 @@ export class CostCsDialogComponent implements OnInit {
     csusers: CSUserCs[];
 
     csgroups: CSGroupCs[];
-    csusers: CSUserCs [];
+
 
     constructor(
         public activeModal: NgbActiveModal,
