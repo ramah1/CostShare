@@ -11,6 +11,9 @@ import { CostCsPopupService } from './cost-cs-popup.service';
 import { CostCsService } from './cost-cs.service';
 import { CSGroupCs, CSGroupCsService } from '../c-s-group';
 import { ResponseWrapper } from '../../shared';
+import {Principal} from "../../shared/auth/principal.service";
+import {CSUserCsService} from "../c-s-user/cs-user-cs.service";
+import {CSUserCs} from "../c-s-user/cs-user-cs.model";
 
 @Component({
     selector: 'jhi-cost-cs-dialog',
@@ -20,15 +23,19 @@ export class CostCsDialogComponent implements OnInit {
 
     cost: CostCs;
     isSaving: boolean;
+    currentAccount: any;
 
     csgroups: CSGroupCs[];
+    csusers: CSUserCs [];
 
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private costService: CostCsService,
         private cSGroupService: CSGroupCsService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private principal: Principal,
+        private userService: CSUserCsService
     ) {
     }
 
@@ -36,6 +43,11 @@ export class CostCsDialogComponent implements OnInit {
         this.isSaving = false;
         this.cSGroupService.query()
             .subscribe((res: ResponseWrapper) => { this.csgroups = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
+        //this.principal.identity().then((account) => {
+          //  this.currentAccount = account;
+        //});
+        //this.userService.find(this.currentAccount.id);
+        this.userService.query().subscribe((res: ResponseWrapper) => { this.csusers = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -46,6 +58,7 @@ export class CostCsDialogComponent implements OnInit {
         this.isSaving = true;
         if (this.cost.id !== undefined) {
             this.subscribeToSaveResponse(
+                //this.cost.paidBies.push(this.currentAccount.id);
                 this.costService.update(this.cost));
         } else {
             this.subscribeToSaveResponse(
