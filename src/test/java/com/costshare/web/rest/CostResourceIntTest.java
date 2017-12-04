@@ -164,9 +164,7 @@ public class CostResourceIntTest {
     }
 
     @Test
-    @Transactional
     public void checkSumIsRequired() throws Exception {
-        int databaseSizeBeforeTest = costRepository.findAll().size();
         // set the field null
         cost.setSum(null);
 
@@ -177,9 +175,33 @@ public class CostResourceIntTest {
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(costDTO)))
             .andExpect(status().isBadRequest());
+    }
 
-        List<Cost> costList = costRepository.findAll();
-        assertThat(costList).hasSize(databaseSizeBeforeTest);
+    @Test
+    public void checkSumIsNegative() throws Exception {
+        // set the sum -1
+        cost.setSum(-1D);
+
+        // Create the Cost, which fails.
+        CostDTO costDTO = costMapper.toDto(cost);
+
+        restCostMockMvc.perform(post("/api/costs")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(costDTO)))
+            .andExpect(status().isOk());
+    }
+    @Test
+    public void checkSumOnBoundary() throws Exception {
+        // set the sum 0
+        cost.setSum(0D);
+
+        // Create the Cost, which fails.
+        CostDTO costDTO = costMapper.toDto(cost);
+
+        restCostMockMvc.perform(post("/api/costs")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(costDTO)))
+            .andExpect(status().isOk());
     }
 
     @Test

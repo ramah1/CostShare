@@ -4,8 +4,10 @@ import com.costshare.CostshareApp;
 import com.costshare.domain.Authority;
 import com.costshare.domain.User;
 import com.costshare.repository.AuthorityRepository;
+import com.costshare.repository.CSUserRepository;
 import com.costshare.repository.UserRepository;
 import com.costshare.security.AuthoritiesConstants;
+import com.costshare.service.CSUserService;
 import com.costshare.service.MailService;
 import com.costshare.service.dto.UserDTO;
 import com.costshare.web.rest.errors.ExceptionTranslator;
@@ -56,6 +58,9 @@ public class AccountResourceIntTest {
     private AuthorityRepository authorityRepository;
 
     @Autowired
+    private CSUserService csUserService;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -83,9 +88,9 @@ public class AccountResourceIntTest {
         doNothing().when(mockMailService).sendActivationEmail(anyObject());
 
         AccountResource accountResource =
-            new AccountResource(userRepository, userService, mockMailService);
+            new AccountResource(userRepository, userService, mockMailService, csUserService);
         AccountResource accountUserMockResource =
-            new AccountResource(userRepository, mockUserService, mockMailService);
+            new AccountResource(userRepository, mockUserService, mockMailService, csUserService);
         this.restMvc = MockMvcBuilders.standaloneSetup(accountResource)
             .setMessageConverters(httpMessageConverters)
             .setControllerAdvice(exceptionTranslator)

@@ -4,6 +4,7 @@ import com.costshare.CostshareApp;
 
 import com.costshare.domain.Invite;
 import com.costshare.repository.InviteRepository;
+import com.costshare.service.CSUserService;
 import com.costshare.service.InviteService;
 import com.costshare.service.dto.InviteDTO;
 import com.costshare.service.mapper.InviteMapper;
@@ -56,6 +57,9 @@ public class InviteResourceIntTest {
     private InviteService inviteService;
 
     @Autowired
+    private CSUserService csUserService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -74,7 +78,7 @@ public class InviteResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final InviteResource inviteResource = new InviteResource(inviteService);
+        final InviteResource inviteResource = new InviteResource(inviteService, csUserService);
         this.restInviteMockMvc = MockMvcBuilders.standaloneSetup(inviteResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

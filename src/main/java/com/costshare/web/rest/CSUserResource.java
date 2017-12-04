@@ -116,7 +116,7 @@ public class CSUserResource {
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
 
-    @GetMapping("/current-cs-users/")
+    @GetMapping("/current-cs-user/")
     @Timed
     public ResponseEntity<CSUserDTO> getCSUserByAuthenticatedJHiUser(){
         log.debug("REST request to get CSUser by authenticated JHiUser");

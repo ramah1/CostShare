@@ -36,7 +36,8 @@
                 "database": "Datenbank",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "Sprache"
+            "language": "Sprache",
+            "inbox": "Inbox"
         },
         "form": {
             "username": "Benutzername",
