@@ -28,28 +28,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="costshareApp.invite.accepted" for="field_accepted">Accepted</label>
-            <input type="checkbox" class="form-control" name="accepted" id="field_accepted"
-                [(ngModel)]="invite.accepted"  />
-        </div>
-
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="costshareApp.invite.group" for="field_group">Group</label>
-            <select class="form-control" id="field_group" name="group" [(ngModel)]="invite.groupId" >
+            <select class="form-control" id="field_group" name="group" [(ngModel)]="invite.groupId" required>
                 <option [ngValue]="null"></option>
                 <option [ngValue]="cSGroupOption.id" *ngFor="let cSGroupOption of csgroups; trackBy: trackCSGroupById">{{cSGroupOption.name}}</option>
             </select>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="costshareApp.invite.sentTo" for="field_sentTo">Sent To</label>
-            <select class="form-control" id="field_sentTo" name="sentTo" [(ngModel)]="invite.sentToId" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="cSUserOption.id" *ngFor="let cSUserOption of csusers; trackBy: trackCSUserById">{{cSUserOption.name}}</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="costshareApp.invite.sentFrom" for="field_sentFrom">Sent From</label>
-            <select class="form-control" id="field_sentFrom" name="sentFrom" [(ngModel)]="invite.sentFromId" >
+            <select class="form-control" id="field_sentTo" name="sentTo" [(ngModel)]="invite.sentToId" required>
                 <option [ngValue]="null"></option>
                 <option [ngValue]="cSUserOption.id" *ngFor="let cSUserOption of csusers; trackBy: trackCSUserById">{{cSUserOption.name}}</option>
             </select>
