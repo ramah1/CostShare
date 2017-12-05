@@ -64,14 +64,6 @@
                 <option [ngValue]="cSGroupOption.id" *ngFor="let cSGroupOption of csgroups; trackBy: trackCSGroupById">{{cSGroupOption.name}}</option>
             </select>
         </div>
-
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="costshareApp.cost.paidBy" for="field_group">Paid by</label>
-            <select class="form-control" id="field_paidBy" name="paidBy" [(ngModel)]="cost.paidBies" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="cSUserOption.id" *ngFor="let cSUserOption of csusers; trackBy: trackCSGroupById">{{cSUserOption.name}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

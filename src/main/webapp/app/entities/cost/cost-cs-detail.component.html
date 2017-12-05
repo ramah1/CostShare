@@ -30,20 +30,22 @@
                 <th>Sum</th>
             </tr>
         <tr>
-            <td>{{currentAccount.login}}</td>
+            <td>
+                <div *ngIf="cost.paidById">
+                    <a [routerLink]="['../cs-user-cs', cost.paidById  ]" >{{cost.paidByName}}</a>
+                </div>
+            </td>
             <td>{{cost.sum}}</td>
         </tr>
         </table>
         <dt><span jhiTranslate="costshareApp.cost.users">Users</span></dt>
         <table>
             <tr>
-                <th>ID</th>
                 <th>Username</th>
                 <th>Multiplier</th>
                 <th>My part</th>
             </tr>
             <tr *ngFor="let userCost of userCosts">
-                <td>{{userCost.id}}</td>
                 <td>{{userCost.userName}}</td>
                 <td>{{userCost.multiplier}}</td>
                 <td>{{userCost.myPart}}</td>
