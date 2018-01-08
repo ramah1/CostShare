@@ -4,6 +4,7 @@ import com.costshare.service.CostService;
 import com.costshare.domain.Cost;
 import com.costshare.repository.CostRepository;
 import com.costshare.service.dto.CostDTO;
+import com.costshare.service.dto.UserCostDTO;
 import com.costshare.service.mapper.CostMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -71,6 +76,14 @@ public class CostServiceImpl implements CostService{
         log.debug("Request to get Cost : {}", id);
         Cost cost = costRepository.findOne(id);
         return costMapper.toDto(cost);
+    }
+
+    @Override
+    public List<CostDTO> findAllByUserId(Long id) {
+        log.debug("Request to get all Costs by UserId : {}", id);
+        return costRepository.findAllByPaidBy(id).stream()
+            .map(costMapper::toDto)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**

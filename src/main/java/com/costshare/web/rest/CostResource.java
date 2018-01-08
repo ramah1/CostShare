@@ -2,6 +2,7 @@ package com.costshare.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.costshare.service.CostService;
+import com.costshare.service.dto.UserCostDTO;
 import com.costshare.web.rest.errors.BadRequestAlertException;
 import com.costshare.web.rest.util.HeaderUtil;
 import com.costshare.web.rest.util.PaginationUtil;
@@ -110,6 +111,14 @@ public class CostResource {
         log.debug("REST request to get Cost : {}", id);
         CostDTO costDTO = costService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(costDTO));
+    }
+
+    @GetMapping("/costs/{id}/user")
+    @Timed
+    public ResponseEntity<List<CostDTO>> getCostsByUserID(@PathVariable Long id) {
+        log.debug("REST request to get a page of Costs");
+        List<CostDTO> list = costService.findAllByUserId(id);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     /**

@@ -42,6 +42,11 @@ export class CostCsService {
             .map((res: Response) => this.convertResponse(res));
     }
 
+    findByUserId(id: number): Observable<ResponseWrapper> {
+        return this.http.get(SERVER_API_URL + 'api/costs/'+id+'/user')
+            .map((res: Response) => this.convertResponse(res));
+    }
+
     delete(id: number): Observable<Response> {
         return this.http.delete(`${this.resourceUrl}/${id}`);
     }

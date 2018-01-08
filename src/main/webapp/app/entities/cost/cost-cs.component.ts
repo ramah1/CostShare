@@ -6,6 +6,8 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { CostCs } from './cost-cs.model';
 import { CostCsService } from './cost-cs.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import {CSUserCs, CSUserCsService} from "../c-s-user";
+import {subscribeToResult} from "rxjs/util/subscribeToResult";
 
 @Component({
     selector: 'jhi-cost-cs',
@@ -23,13 +25,14 @@ export class CostCsComponent implements OnInit, OnDestroy {
     queryCount: any;
     reverse: any;
     totalItems: number;
+    user: CSUserCs;
 
     constructor(
         private costService: CostCsService,
         private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private parseLinks: JhiParseLinks,
-        private principal: Principal
+        private principal: Principal,
     ) {
         this.costs = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -66,7 +69,6 @@ export class CostCsComponent implements OnInit, OnDestroy {
         this.loadAll();
         this.principal.identity().then((account) => {
             this.currentAccount = account;
-            console.log(this.currentAccount);
         });
         this.registerChangeInCosts();
     }
@@ -82,12 +84,6 @@ export class CostCsComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('costListModification', (response) => this.reset());
     }
 
-    calculMyPart(){
-        for (let sum of this.costs){
-            console.log(sum);
-        }
-    }
-
     sort() {
         const result = [this.predicate + ',' + (this.reverse ? 'asc' : 'desc')];
         if (this.predicate !== 'id') {
@@ -99,9 +95,11 @@ export class CostCsComponent implements OnInit, OnDestroy {
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
-        for (let i = 0; i < data.length; i++) {
-            this.costs.push(data[i]);
-        }
+        data.forEach(result => {
+            if (result.paidByName === this.currentAccount.login) {
+                this.costs.push(result);
+            }
+        });
     }
 
     private onError(error) {

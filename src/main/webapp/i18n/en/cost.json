@@ -4,7 +4,8 @@
             "home": {
                 "title": "Costs",
                 "createLabel": "Create a new Cost",
-                "createOrEditLabel": "Create or edit a Cost"
+                "createOrEditLabel": "Create or edit a Cost",
+                "myCost": "My Costs"
             },
             "created": "A new Cost is created with identifier {{ param }}",
             "updated": "A Cost is updated with identifier {{ param }}",

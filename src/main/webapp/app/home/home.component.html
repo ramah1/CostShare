@@ -1,77 +1,55 @@
 <div class="row">
     <div class="col-lg-12 vertical-center text-center">
         <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-default" *ngSwitchCase="true">
-                <!-- <span *ngIf="account" jhiTranslate="home.logged.message"
-                       translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>-->
-                <!--<ul class="dropdown-menu" ngbDropdownMenu>-->
-                <button class="btn btn-primary jh-create-entity create-cost-cs" [routerLink]="['/', { outlets: { popup: ['cost-cs-new'] } }]">
-                    <span class="fa fa-plus"></span>
-                    <span  jhiTranslate="costshareApp.cost.home.createLabel">
-            Create new Cost
-            </span>
-                </button>
-                <button class="btn btn-primary jh-create-entity create-cs-user-cs" [routerLink]="['/', { outlets: { popup: ['cs-user-cs-new'] } }]">
-                    <span class="fa fa-plus"></span>
-                    <span  jhiTranslate="costshareApp.cSUser.home.createLabel">
-            Create new CS User
-            </span>
-                </button>
-                <button class="btn btn-primary jh-create-entity create-user-cost-cs" [routerLink]="['/', { outlets: { popup: ['user-cost-cs-new'] } }]">
-                    <span class="fa fa-plus"></span>
-                    <span  jhiTranslate="costshareApp.userCost.home.createLabel">
-            Create new User Cost
-            </span>
-                </button>
-                <button class="btn btn-primary jh-create-entity create-cs-group-cs" [routerLink]="['/', { outlets: { popup: ['cs-group-cs-new'] } }]">
-                    <span class="fa fa-plus"></span>
-                    <span  jhiTranslate="costshareApp.cSGroup.home.createLabel">
-            Create new CS Group
-            </span>
-                </button>
-                <button class="btn btn-primary jh-create-entity create-invite-cs" [routerLink]="['/', { outlets: { popup: ['invite-cs-new'] } }]">
-                    <span class="fa fa-plus"></span>
-                    <span  jhiTranslate="costshareApp.invite.home.createLabel">
-            Create new Invite
-            </span>
-                </button>
-
-                <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-            </div>
-
-            <div class="alert alert-default" *ngSwitchCase="true">
-                <div class="table-responsive" *ngIf="cSGroups">
-                   <!-- <table class="table table-striped">
+            <h2>
+                <span jhiTranslate="costshareApp.cost.home.myCost"> My Costs</span>
+            </h2>
+            <jhi-alert></jhi-alert>
+            <div *ngSwitchCase="true">
+                <div class="table-responsive" *ngIf="costs">
+                    <table class="table table-striped">
                         <thead>
-                        <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-                            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-                            <th jhiSortBy="name"><span jhiTranslate="costshareApp.cSGroup.name">Name</span> <span class="fa fa-sort"></span></th>
-                            <th jhiSortBy="description"><span jhiTranslate="costshareApp.cSGroup.description">Description</span> <span class="fa fa-sort"></span></th>
-                            <th></th>
-                        </tr>
+                        <th><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                        <th><span jhiTranslate="costshareApp.cost.name">Name</span> <span class="fa fa-sort"></span></th>
+                        <th><span jhiTranslate="costshareApp.cost.description">Description</span> <span class="fa fa-sort"></span></th>
+                        <th><span jhiTranslate="costshareApp.cost.sum">Sum</span> <span class="fa fa-sort"></span></th>
+                        <th><span jhiTranslate="costshareApp.cost.paidBy">Paid By</span> <span class="fa fa-sort"></span></th>
+                        <th><span jhiTranslate="costshareApp.cost.group">Group</span> <span class="fa fa-sort"></span></th>
+                        <th></th>
                         </thead>
-                        <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-                        <tr *ngFor="let cSGroup of cSGroups ;trackBy: trackId">
-                            <td><a [routerLink]="['../cs-group-cs', cSGroup.id ]">{{cSGroup.id}}</a></td>
-                            <td>{{cSGroup.name}}</td>
-                            <td>{{cSGroup.description}}</td>
+                        <tbody>
+                        <tr *ngFor="let cost of costs ;trackBy: trackId">
+                            <td><a [routerLink]="['../cost-cs', cost.id ]">{{cost.id}}</a></td>
+                            <td>{{cost.name}}</td>
+                            <td>{{cost.description}}</td>
+                            <td>{{cost.sum}}</td>
+                            <td>
+                                <div *ngIf="cost.paidById">
+                                    <a [routerLink]="['../cs-user-cs', cost.paidById  ]" >{{cost.paidByName}}</a>
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngIf="cost.groupId">
+                                    <a [routerLink]="['../cs-group-cs', cost.groupId  ]" >{{cost.groupName}}</a>
+                                </div>
+                            </td>
                             <td class="text-right">
                                 <div class="btn-group flex-btn-group-container">
                                     <button type="submit"
-                                            [routerLink]="['../cs-group-cs', cSGroup.id ]"
+                                            [routerLink]="['../cost-cs', cost.id ]"
                                             class="btn btn-info btn-sm">
                                         <span class="fa fa-eye"></span>
                                         <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                                     </button>
                                     <button type="submit"
-                                            [routerLink]="['/', { outlets: { popup: 'cs-group-cs/'+ cSGroup.id + '/edit'} }]"
+                                            [routerLink]="['/', { outlets: { popup: 'cost-cs/'+ cost.id + '/edit'} }]"
                                             replaceUrl="true"
                                             class="btn btn-primary btn-sm">
                                         <span class="fa fa-pencil"></span>
                                         <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                                     </button>
                                     <button type="submit"
-                                            [routerLink]="['/', { outlets: { popup: 'cs-group-cs/'+ cSGroup.id + '/delete'} }]"
+                                            [routerLink]="['/', { outlets: { popup: 'cost-cs/'+ cost.id + '/delete'} }]"
                                             replaceUrl="true"
                                             class="btn btn-danger btn-sm">
                                         <span class="fa fa-remove"></span>
@@ -81,7 +59,7 @@
                             </td>
                         </tr>
                         </tbody>
-                    </table>-->
+                    </table>
                 </div>
             </div>
 
